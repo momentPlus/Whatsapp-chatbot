@@ -1,0 +1,1388 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moment+ - حلول واتساب للأعمال في عُمان</title>
+  <meta name="description" content="Moment+ يقدّم حلول واتساب احترافية في عُمان: أتمتة محادثات، بث قانوني، قوالب رسمية، تقارير وتكاملات CRM. جرّب مجانًا 7 أيام.">
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+    body {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #ffffff;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    html {
+      height: 100%;
+      scroll-behavior: smooth;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Header */
+    .header {
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: white;
+      padding: 1rem 0;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-menu a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity 0.3s;
+    }
+
+    .nav-menu a:hover {
+      opacity: 0.8;
+    }
+
+    .cta-button {
+      background: white;
+      color: #25D366;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-2px);
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+      color: white;
+      padding: 8rem 2rem 4rem;
+      text-align: center;
+      margin-top: 70px;
+    }
+
+    .hero-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      opacity: 0.9;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+
+    .btn-primary {
+      background: white;
+      color: #25D366;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: all 0.3s;
+      border: 2px solid white;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 30px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 2px solid white;
+      transition: all 0.3s;
+    }
+
+    .btn-primary:hover, .btn-secondary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .social-proof {
+      margin-top: 2rem;
+      opacity: 0.8;
+    }
+
+    /* Sections */
+    .section {
+      padding: 4rem 2rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: #25D366;
+      font-weight: bold;
+    }
+
+    /* Pricing Cards */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .pricing-card {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+      position: relative;
+      border: 2px solid transparent;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .pricing-card.popular {
+      border-color: #fbbf24;
+      transform: scale(1.05);
+    }
+
+    .pricing-card.popular::before {
+      content: 'الأكثر شيوعًا';
+      position: absolute;
+      top: -15px;
+      right: 20px;
+      background: #fbbf24;
+      color: white;
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: bold;
+    }
+
+    .card-header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .package-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #25D366;
+      margin-bottom: 0.5rem;
+    }
+
+    .package-price {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-note {
+      font-size: 0.9rem;
+      color: #666;
+    }
+
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+    }
+
+    .features-list li {
+      padding: 0.5rem 0;
+      padding-right: 1.5rem;
+      position: relative;
+      color: #555;
+    }
+
+    .features-list li::before {
+      content: '✓';
+      position: absolute;
+      right: 0;
+      color: #25D366;
+      font-weight: bold;
+    }
+
+    .card-button {
+      width: 100%;
+      background: #25D366;
+      color: white;
+      padding: 1rem;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .card-button:hover {
+      background: #128C7E;
+    }
+
+    /* Calculator Section */
+    .calculator {
+      background: #f8f9fa;
+      padding: 3rem 2rem;
+      border-radius: 15px;
+      margin: 2rem 0;
+      text-align: center;
+    }
+
+    .calculator-input {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+
+    .calculator-input input {
+      padding: 1rem;
+      border: 2px solid #ddd;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      width: 200px;
+      text-align: center;
+    }
+
+    .calculator-result {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      margin-top: 2rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Features Grid */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #25D366;
+      margin-bottom: 1rem;
+    }
+
+    /* Use Cases */
+    .use-cases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin: 3rem 0;
+    }
+
+    .use-case {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+      color: white;
+      padding: 2rem;
+      border-radius: 15px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .use-case:hover {
+      transform: scale(1.05);
+    }
+
+    /* FAQ */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      background: white;
+      margin-bottom: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      overflow: hidden;
+    }
+
+    .faq-question {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      cursor: pointer;
+      font-weight: bold;
+      color: #333;
+      border: none;
+      width: 100%;
+      text-align: right;
+      transition: background 0.3s;
+    }
+
+    .faq-question:hover {
+      background: #e9ecef;
+    }
+
+    .faq-answer {
+      padding: 1.5rem;
+      color: #666;
+      display: none;
+    }
+
+    .faq-answer.active {
+      display: block;
+    }
+
+    /* WhatsApp Float Button */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background: #25D366;
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      text-decoration: none;
+      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+      z-index: 1000;
+      transition: transform 0.3s;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+    }
+
+    /* Footer */
+    .footer {
+      background: #333;
+      color: white;
+      padding: 3rem 2rem 1rem;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .footer-section h3 {
+      color: #25D366;
+      margin-bottom: 1rem;
+    }
+
+    .footer-section a {
+      color: #ccc;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+      transition: color 0.3s;
+    }
+
+    .footer-section a:hover {
+      color: #25D366;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid #555;
+      color: #999;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-menu {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .pricing-card.popular {
+        transform: none;
+      }
+
+      .calculator-input {
+        flex-direction: column;
+      }
+
+      .calculator-input input {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-on-scroll {
+      animation: fadeInUp 0.6s ease-out;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body><!-- Header -->
+  <header class="header">
+   <div class="nav-container">
+    <div class="logo" id="company-name">
+     Moment+
+    </div>
+    <nav>
+     <ul class="nav-menu">
+      <li><a href="#pricing">التسعير</a></li>
+      <li><a href="#features">الميزات</a></li>
+      <li><a href="#use-cases">القطاعات</a></li>
+      <li><a href="#faq">الأسئلة الشائعة</a></li>
+     </ul>
+    </nav><a href="#contact" class="cta-button">تواصل معنا</a>
+   </div>
+  </header><!-- Hero Section -->
+  <section class="hero">
+   <div class="hero-container">
+    <h1 id="hero-title">نحوّل محادثات واتساب إلى نموّ مُقاس</h1>
+    <p class="hero-subtitle" id="hero-subtitle">أتمتة – صندوق رسائل – قوالب رسمية – تقارير – تكاملات CRM</p>
+    <div class="hero-buttons"><a href="javascript:void(0)" onclick="bookMeeting()" class="btn-primary">احجز اجتماع مع الفريق</a> <a href="#whatsapp" class="btn-secondary">تواصل واتساب الآن</a>
+    </div>
+    <div class="social-proof">
+     <p>🏆 موثوق به من أكثر من 100 شركة في عُمان</p>
+    </div>
+   </div>
+  </section><!-- Calculator Section -->
+  <section class="section">
+   <div class="container">
+    <div class="calculator">
+     <h2>احسب تكلفة باقتك</h2>
+     <p>أدخل عدد جهات الاتصال النشطة المتوقعة شهريًا</p>
+     <div class="calculator-input"><label>عدد جهات الاتصال النشطة:</label> <input type="number" id="mac-input" placeholder="1000" min="1" max="10000"> <button onclick="calculatePrice()" class="card-button" style="width: auto; padding: 1rem 2rem;">احسب</button>
+     </div>
+     <div class="calculator-result" id="calculator-result" style="display: none;">
+      <h3>الباقة المناسبة لك:</h3>
+      <div id="recommended-package"></div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Pricing Section -->
+  <section id="pricing" class="section">
+   <div class="container">
+    <h2 class="section-title">باقات Moment+ (واتساب رقم واحد | 1,000 MAC)</h2>
+    <div class="pricing-grid">
+     <div class="pricing-card">
+      <div class="card-header">
+       <div class="package-name">
+        M+ Core | نبضة
+       </div>
+       <div class="package-price">
+        648 ر.ع
+       </div>
+       <div class="price-note">
+        اشتراك سنوي شامل
+       </div>
+      </div>
+      <ul class="features-list">
+       <li>صندوق رسائل موحّد (أكثر من شخص يقدر يدير المحادثات)</li>
+       <li>ما فيه ردود تلقائية - بس تنظيم المحادثات</li>
+       <li>رسائل جماعية بسيطة (مرّتين بالشهر بس)</li>
+       <li>قوالب واتساب الرسمية فقط</li>
+       <li>مجموعة عملاء واحدة بس</li>
+       <li>حتى 1,000 عميل نشط بالشهر</li>
+       <li>تقارير بسيطة عن الرسائل</li>
+       <li>رقم واتساب واحد</li>
+      </ul><button class="card-button" onclick="requestQuote('Core')">احجز اجتماع</button>
+     </div>
+     <div class="pricing-card popular">
+      <div class="card-header">
+       <div class="package-name">
+        M+ Boost | زخم
+       </div>
+       <div class="package-price">
+        1,304 ر.ع
+       </div>
+       <div class="price-note">
+        اشتراك سنوي شامل
+       </div>
+      </div>
+      <ul class="features-list">
+       <li>كل مميزات الباقة الأساسية</li>
+       <li>رسائل جماعية أكثر (8 حملات بالشهر)</li>
+       <li>تقدر تحفظ 5 مجموعات عملاء مختلفة</li>
+       <li>تتبع مين ضغط على الروابط</li>
+       <li>تقدر تختار مين تبعت له الرسالة</li>
+       <li>تقارير مين فتح الرسالة ومين ضغط</li>
+       <li>إعادة إرسال للي تفاعلوا معك</li>
+       <li>ربط مع أنظمة إدارة العملاء البسيطة</li>
+      </ul><button class="card-button" onclick="requestQuote('Boost')">احجز اجتماع</button>
+     </div>
+     <div class="pricing-card">
+      <div class="card-header">
+       <div class="package-name">
+        M+ Pro | برق
+       </div>
+       <div class="package-price">
+        2,287 ر.ع
+       </div>
+       <div class="price-note">
+        اشتراك سنوي شامل
+       </div>
+      </div>
+      <ul class="features-list">
+       <li>كل مميزات باقة زخم</li>
+       <li>رسائل تلقائية ذكية + اختبار رسالتين (20 حملة/شهر)</li>
+       <li>مجموعات عملاء بلا حدود تقريباً</li>
+       <li>رسائل تتغير حسب بيانات العميل</li>
+       <li>ردود تلقائية بعد إرسال الرسائل</li>
+       <li>معلومات العميل تدخل تلقائياً في الرسائل</li>
+       <li>ربط كامل مع جميع الأنظمة</li>
+       <li>أقسام متعددة للشركة الواحدة</li>
+      </ul><button class="card-button" onclick="requestQuote('Pro')">احجز اجتماع</button>
+     </div>
+     <div class="pricing-card">
+      <div class="card-header">
+       <div class="package-name">
+        M+ Enterprise | شراكة
+       </div>
+       <div class="package-price">
+        عرض مخصص
+       </div>
+       <div class="price-note">
+        حسب احتياج شركتك
+       </div>
+      </div>
+      <ul class="features-list">
+       <li>كل مميزات باقة برق</li>
+       <li>رسائل جماعية بلا حدود + ضمان سرعة</li>
+       <li>دعم للحملات الكبيرة والمواسم</li>
+       <li>مجموعات عملاء ضخمة مخصصة</li>
+       <li>موظفين بلا حدود يستخدمون النظام</li>
+       <li>ربط متقدم مع أنظمة الشركات الكبيرة</li>
+       <li>استشارات تقنية مخصصة لشركتك</li>
+       <li>دعم مخصص مع ضمان الاستجابة</li>
+      </ul><button class="card-button" onclick="requestQuote('Enterprise')">احجز اجتماع</button>
+     </div>
+    </div>
+    <div style="text-align: center; margin-top: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px;">
+     <h4 style="color: #25D366; margin-bottom: 1rem;">📢 مهم: الرسائل الجماعية</h4>
+     <p><strong>كل الباقات فيها رسائل جماعية حسب العدد المذكور.</strong> هذه الرسائل تروح عبر <strong>قوالب واتساب الرسمية</strong> وتكلفة القوالب تنضاف على الفاتورة من واتساب مباشرة.</p>
+     <p style="margin-top: 0.5rem;"><strong>انتبه:</strong> الرسائل الجماعية تزيد عدد العملاء النشطين. لو تجاوزت 1,000 عميل نشط، راح نحسب الزيادة أو ننصحك بترقية الباقة.</p>
+     <p style="margin-top: 0.5rem; font-size: 0.9rem; color: #666;"><strong>مهم:</strong> هذه اشتراكات سنوية فقط - ما عندنا اشتراك شهري.</p>
+    </div>
+   </div>
+  </section><!-- Partners Section -->
+  <section class="section" style="background: #f8f9fa;">
+   <div class="container">
+    <h2 class="section-title">شركاؤنا الاستراتيجيون</h2>
+    <div style="text-align: center; margin-bottom: 3rem;">
+     <p style="font-size: 1.2rem; color: #666; max-width: 800px; margin: 0 auto;">نتعاون مع أفضل الشركات التقنية العالمية لنقدم لك حلول واتساب الأكثر تطوراً وموثوقية</p>
+    </div>
+    <div class="features-grid">
+     <div class="feature-card" style="border: 2px solid #25D366;">
+      <div class="feature-icon">
+       🤝
+      </div>
+      <div class="feature-title" style="color: #25D366;">
+       Respond.io
+      </div>
+      <p><strong>الشريك التقني الرئيسي</strong></p>
+      <p>منصة إدارة المحادثات الرائدة عالمياً، معتمدة من Meta كشريك رسمي لواتساب للأعمال</p>
+      <ul style="text-align: right; margin: 1rem 0; padding-right: 1.5rem;">
+       <li>✅ شريك Meta الرسمي</li>
+       <li>✅ أمان وموثوقية عالية</li>
+       <li>✅ تحديثات مستمرة</li>
+      </ul>
+     </div>
+     <div class="feature-card" style="border: 2px solid #1877f2;">
+      <div class="feature-icon">
+       📱
+      </div>
+      <div class="feature-title" style="color: #1877f2;">
+       Meta (WhatsApp)
+      </div>
+      <p><strong>المزود الأساسي</strong></p>
+      <p>نعمل مباشرة مع Meta لضمان الامتثال الكامل لسياسات واتساب للأعمال</p>
+      <ul style="text-align: right; margin: 1rem 0; padding-right: 1.5rem;">
+       <li>✅ قوالب رسمية معتمدة</li>
+       <li>✅ حماية من الحظر</li>
+       <li>✅ ميزات حصرية</li>
+      </ul>
+     </div>
+     <div class="feature-card" style="border: 2px solid #ff6b35;">
+      <div class="feature-icon">
+       🔗
+      </div>
+      <div class="feature-title" style="color: #ff6b35;">
+       شركاء التكامل
+      </div>
+      <p><strong>النظم والتطبيقات</strong></p>
+      <p>تكاملات جاهزة مع أشهر أنظمة إدارة العملاء والمحاسبة</p>
+      <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; margin: 1rem 0; font-size: 0.9rem;"><span>• Zoho CRM</span> <span>• HubSpot</span> <span>• Odoo ERP</span> <span>• Salesforce</span> <span>• Monday.com</span> <span>• وأكثر...</span>
+      </div>
+     </div>
+    </div>
+    <div style="background: linear-gradient(135deg, #25D366, #128C7E); color: white; padding: 2rem; border-radius: 15px; margin-top: 2rem; text-align: center;">
+     <h3 style="color: white; margin-bottom: 1rem;">🎯 دورنا كـ Moment+</h3>
+     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+      <div>
+       <div style="font-size: 2rem; margin-bottom: 0.5rem;">
+        🛠
+       </div>
+       <h4 style="color: white; margin: 0.5rem 0;">التنفيذ والإعداد</h4>
+       <p style="margin: 0; font-size: 0.9rem;">نقوم بإعداد وتخصيص الأنظمة حسب احتياجاتك</p>
+      </div>
+      <div>
+       <div style="font-size: 2rem; margin-bottom: 0.5rem;">
+        🎓
+       </div>
+       <h4 style="color: white; margin: 0.5rem 0;">التدريب والدعم</h4>
+       <p style="margin: 0; font-size: 0.9rem;">نوفر التدريب المحلي والدعم باللغة العربية</p>
+      </div>
+      <div>
+       <div style="font-size: 2rem; margin-bottom: 0.5rem;">
+        📊
+       </div>
+       <h4 style="color: white; margin: 0.5rem 0;">الاستشارة والتحسين</h4>
+       <p style="margin: 0; font-size: 0.9rem;">نساعدك في تحسين استراتيجية التواصل</p>
+      </div>
+      <div>
+       <div style="font-size: 2rem; margin-bottom: 0.5rem;">
+        🔧
+       </div>
+       <h4 style="color: white; margin: 0.5rem 0;">الصيانة والتطوير</h4>
+       <p style="margin: 0; font-size: 0.9rem;">نضمن استمرارية العمل وإضافة ميزات جديدة</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Why Moment+ -->
+  <section class="section">
+   <div class="container">
+    <h2 class="section-title">لماذا Moment+؟</h2>
+    <div class="features-grid">
+     <div class="feature-card">
+      <div class="feature-icon">
+       ⚡
+      </div>
+      <div class="feature-title">
+       تنفيذ سريع
+      </div>
+      <p>تفعيل خلال 1–3 أيام عمل فقط</p>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       🇴🇲
+      </div>
+      <div class="feature-title">
+       دعم عربي محلي
+      </div>
+      <p>فريق دعم محلي يتحدث العربية</p>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       🔒
+      </div>
+      <div class="feature-title">
+       أمان وصلاحيات
+      </div>
+      <p>إدارة صلاحيات متقدمة للفرق</p>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       📊
+      </div>
+      <div class="feature-title">
+       تقارير قابلة للقياس
+      </div>
+      <p>مؤشرات أداء واضحة ومفصلة</p>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       📈
+      </div>
+      <div class="feature-title">
+       قابلية توسّع
+      </div>
+      <p>إضافة أرقام وزيادة الحدود بسهولة</p>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       🛠
+      </div>
+      <div class="feature-title">
+       تكاملات شاملة
+      </div>
+      <p>ربط مع أنظمة CRM والمحاسبة</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Features Section -->
+  <section id="features" class="section">
+   <div class="container">
+    <h2 class="section-title">ما الذي نقدّمه</h2>
+    <div class="features-grid">
+     <div class="feature-card">
+      <div class="feature-icon">
+       💬
+      </div>
+      <div class="feature-title">
+       صندوق رسائل موحّد
+      </div>
+      <p>إدارة جميع المحادثات من مكان واحد مع الإسناد والتصنيفات</p>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       🤖
+      </div>
+      <div class="feature-title">
+       أتمتة المحادثات
+      </div>
+      <p>ترحيب تلقائي، ردود خارج الدوام، وتدفّق أسئلة ذكي</p>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       📝
+      </div>
+      <div class="feature-title">
+       قوالب رسائل رسمية
+      </div>
+      <p>WhatsApp Templates معتمدة من Meta للتواصل الاحترافي</p>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       📢
+      </div>
+      <div class="feature-title">
+       حملات بث قانونية
+      </div>
+      <p>إرسال جماعي مع تتبع الروابط ومعدلات الفتح</p>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       🔗
+      </div>
+      <div class="feature-title">
+       تكاملات API
+      </div>
+      <p>ربط مع Zoho, HubSpot, Odoo وأنظمة CRM الأخرى</p>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       📊
+      </div>
+      <div class="feature-title">
+       لوحة مؤشرات
+      </div>
+      <p>SLA، معدّل الرد، زمن الإغلاق، وتحليلات شاملة</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Use Cases -->
+  <section id="use-cases" class="section" style="background: #f8f9fa;">
+   <div class="container">
+    <h2 class="section-title">القطاعات المستهدفة</h2>
+    <div class="use-cases-grid">
+     <div class="use-case">
+      <h3>🛍 متاجر وتجزئة</h3>
+      <p>طلبات، تأكيدات، عروض، ومتابعة العملاء</p>
+     </div>
+     <div class="use-case">
+      <h3>🏥 عيادات ومراكز</h3>
+      <p>حجز مواعيد، تذكيرات، ونتائج فحوصات</p>
+     </div>
+     <div class="use-case">
+      <h3>🎓 معاهد وتدريب</h3>
+      <p>تسجيل دورات، تنبيهات، ومتابعة الطلاب</p>
+     </div>
+     <div class="use-case">
+      <h3>🔧 صيانة وتوصيل</h3>
+      <p>فتح بلاغات، تتبع الطلبات، وتحديثات الحالة</p>
+     </div>
+     <div class="use-case">
+      <h3>💄 صالونات وتجميل</h3>
+      <p>حجز مواعيد، تأكيد تلقائي، وعروض خاصة</p>
+     </div>
+     <div class="use-case">
+      <h3>🏢 شركات ومؤسسات</h3>
+      <p>دعم العملاء، مبيعات، وتواصل داخلي</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Success Stories -->
+  <section class="section">
+   <div class="container">
+    <h2 class="section-title">قصص نجاح</h2>
+    <div class="features-grid">
+     <div class="feature-card">
+      <div class="feature-icon">
+       📈
+      </div>
+      <div class="feature-title">
+       شركة التجارة الذكية
+      </div>
+      <p>"زادت معدلات الرد بنسبة 85% وتحسن رضا العملاء بشكل ملحوظ"</p><small>- مدير المبيعات</small>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       ⏰
+      </div>
+      <div class="feature-title">
+       عيادة النور الطبية
+      </div>
+      <p>"وفرنا 60% من وقت الموظفين في إدارة المواعيد"</p><small>- مدير العمليات</small>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       💰
+      </div>
+      <div class="feature-title">
+       معهد التطوير المهني
+      </div>
+      <p>"زادت التسجيلات بنسبة 120% خلال 3 أشهر"</p><small>- مدير التسويق</small>
+     </div>
+    </div>
+   </div>
+  </section><!-- How to Start -->
+  <section class="section" style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: white;">
+   <div class="container">
+    <h2 class="section-title" style="color: white;">كيف نبدأ</h2>
+    <div class="features-grid">
+     <div class="feature-card" style="background: rgba(255,255,255,0.1); color: white;">
+      <div class="feature-icon">
+       📞
+      </div>
+      <div class="feature-title" style="color: white;">
+       1. مكالمة تعريفية
+      </div>
+      <p>15 دقيقة لفهم احتياجاتك</p>
+     </div>
+     <div class="feature-card" style="background: rgba(255,255,255,0.1); color: white;">
+      <div class="feature-icon">
+       ⚙
+      </div>
+      <div class="feature-title" style="color: white;">
+       2. تهيئة الحساب
+      </div>
+      <p>إعداد النظام والقوالب خلال 24-48 ساعة</p>
+     </div>
+     <div class="feature-card" style="background: rgba(255,255,255,0.1); color: white;">
+      <div class="feature-icon">
+       🎓
+      </div>
+      <div class="feature-title" style="color: white;">
+       3. تدريب الفريق
+      </div>
+      <p>جلسة تدريبية 60 دقيقة لفريقك</p>
+     </div>
+     <div class="feature-card" style="background: rgba(255,255,255,0.1); color: white;">
+      <div class="feature-icon">
+       📊
+      </div>
+      <div class="feature-title" style="color: white;">
+       4. متابعة ومراجعة
+      </div>
+      <p>متابعة أول 14 يوم وتحسين الأداء</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- FAQ -->
+  <section id="faq" class="section">
+   <div class="container">
+    <h2 class="section-title">الأسئلة الشائعة</h2>
+    <div class="faq-container">
+     <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"> ما هو MAC وكيف تُحتسب الرسوم؟ </button>
+      <div class="faq-answer">
+       <div style="background: linear-gradient(135deg, #25D366, #128C7E); color: white; padding: 1.5rem; border-radius: 10px; margin-bottom: 1.5rem;">
+        <h4 style="color: white; margin-bottom: 1rem; text-align: center;">🎯 ما هو العميل النشط الشهري (MAC)؟</h4>
+        <p style="text-align: center; font-size: 1.1rem; margin: 0;"><strong>هو أي شخص تكلمت معه أو راسلته خلال الشهر - سواء هو بدأ المحادثة أو أنت!</strong></p>
+       </div>
+       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin: 1.5rem 0;">
+        <div style="background: #f0f9ff; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #25D366;">
+         <h5 style="color: #25D366; margin: 0 0 0.5rem 0;">✅ يُحتسب كعميل نشط:</h5>
+         <ul style="margin: 0; padding-right: 1rem;">
+          <li>عميل راسلك: "أريد أسعار المنتجات"</li>
+          <li>أرسلت له عرض خاص</li>
+          <li>رد على استفسارك</li>
+          <li>تفاعل مع حملتك الإعلانية</li>
+         </ul>
+        </div>
+        <div style="background: #fef2f2; padding: 1.5rem; border-radius: 10px; border-left: 4px solid #ef4444;">
+         <h5 style="color: #ef4444; margin: 0 0 0.5rem 0;">❌ لا يُحتسب كعميل نشط:</h5>
+         <ul style="margin: 0; padding-right: 1rem;">
+          <li>رقم محفوظ بس ما تكلمتوا</li>
+          <li>محادثة من شهر ماضي فقط</li>
+          <li>عميل شاف رسالتك بس ما رد</li>
+          <li>جهة اتصال غير فعّالة</li>
+         </ul>
+        </div>
+       </div>
+       <div style="background: #fff7ed; padding: 1.5rem; border-radius: 10px; border: 2px solid #fbbf24; margin: 1.5rem 0;">
+        <h5 style="color: #f59e0b; margin: 0 0 1rem 0;">🤔 ليش نحاسب على العملاء النشطين؟</h5>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+         <div style="text-align: center;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">
+           💰
+          </div>
+          <p style="margin: 0; font-weight: bold;">تدفع بس للي تتكلم معهم</p><small>مو كل الأرقام المحفوظة</small>
+         </div>
+         <div style="text-align: center;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">
+           📈
+          </div>
+          <p style="margin: 0; font-weight: bold;">كل محادثة = فرصة بيع</p><small>السعر يعكس القيمة الحقيقية</small>
+         </div>
+         <div style="text-align: center;">
+          <div style="font-size: 2rem; margin-bottom: 0.5rem;">
+           ⚖
+          </div>
+          <p style="margin: 0; font-weight: bold;">عدالة في التسعير</p><small>حسب نشاطك الفعلي</small>
+         </div>
+        </div>
+       </div>
+       <div style="background: #f0fdf4; padding: 1.5rem; border-radius: 10px; border: 2px solid #22c55e; margin: 1.5rem 0;">
+        <h5 style="color: #16a34a; margin: 0 0 1rem 0;">📊 مثال عملي:</h5>
+        <div style="background: white; padding: 1rem; border-radius: 8px; margin-bottom: 1rem;">
+         <p style="margin: 0 0 0.5rem 0;"><strong>شركة أحمد للإلكترونيات - شهر يناير:</strong></p>
+         <ul style="margin: 0; padding-right: 1.5rem;">
+          <li>📱 500 رقم محفوظ في الهاتف</li>
+          <li>💬 تكلم مع 150 عميل فقط</li>
+          <li>💰 يدفع عن 150 عميل نشط (مو 500!)</li>
+         </ul>
+        </div>
+        <p style="margin: 0; text-align: center; font-weight: bold; color: #16a34a;">النتيجة: وفّر 70% من التكلفة! 🎉</p>
+       </div>
+       <div style="background: #e8f5e8; padding: 1.5rem; border-radius: 10px; margin-top: 1.5rem; text-align: center;">
+        <div style="font-size: 2rem; margin-bottom: 0.5rem;">
+         🎯
+        </div>
+        <p style="margin: 0; color: #25D366; font-weight: bold; font-size: 1.1rem;">باختصار: MAC = عدد الأشخاص الذين تفاعلت معهم فعلياً هذا الشهر</p><small style="color: #666;">سواء هم راسلوك أو أنت راسلتهم - المهم في تفاعل حقيقي!</small>
+       </div>
+      </div>
+     </div>
+     <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"> ماذا لو تجاوزنا 1,000 MAC؟ </button>
+      <div class="faq-answer">
+       عند التجاوز، يتم تمرير فرق المزوّد كما يظهر في الفاتورة. إذا تكرر التجاوز شهرين متتالين نوصي بالترقية للشريحة الأعلى.
+      </div>
+     </div>
+     <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"> كم مدة التفعيل؟ </button>
+      <div class="faq-answer">
+       عادةً 1-3 أيام عمل بعد استلام المتطلبات والدفعة الأولى.
+      </div>
+     </div>
+     <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"> هل تشمل الأسعار رسوم المزوّد؟ </button>
+      <div class="faq-answer">
+       لا، أسعار Moment+ لا تشمل رسوم المزوّدين (respond.io/Meta). تُمرَّر كما هي في الفاتورة كبند مستقل.
+      </div>
+     </div>
+     <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)"> ما هي سياسة الإلغاء والتجديد؟ </button>
+      <div class="faq-answer">
+       يمكن الإلغاء بإشعار 30 يوم. التجديد تلقائي ما لم يتم الإشعار بالإلغاء. أي تغيير في أسعار المزودين يُطبق عند التجديد.
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Contact -->
+  <section id="contact" class="section" style="background: #f8f9fa;">
+   <div class="container">
+    <h2 class="section-title">تواصل معنا</h2>
+    <div class="features-grid">
+     <div class="feature-card">
+      <div class="feature-icon">
+       📱
+      </div>
+      <div class="feature-title">
+       واتساب
+      </div>
+      <p id="phone">+968 98567383</p><a href="#" class="btn-primary" style="display: inline-block; margin-top: 1rem;">تواصل الآن</a>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       📧
+      </div>
+      <div class="feature-title">
+       البريد الإلكتروني
+      </div>
+      <p id="email">info@momentconnect.com</p><a href="#" class="btn-primary" style="display: inline-block; margin-top: 1rem;">أرسل رسالة</a>
+     </div>
+     <div class="feature-card">
+      <div class="feature-icon">
+       🌐
+      </div>
+      <div class="feature-title">
+       الموقع الإلكتروني
+      </div>
+      <p id="website">www.momentconnect.com</p><a href="#" class="btn-primary" style="display: inline-block; margin-top: 1rem;">زيارة الموقع</a>
+     </div>
+    </div>
+   </div>
+  </section><!-- Footer -->
+  <footer class="footer">
+   <div class="footer-content">
+    <div class="footer-section">
+     <h3>الخدمات</h3><a href="#pricing">التسعير</a> <a href="#features">الميزات</a> <a href="#use-cases">القطاعات</a> <a href="#faq">الأسئلة الشائعة</a>
+    </div>
+    <div class="footer-section">
+     <h3>الشركة</h3><a href="#">من نحن</a> <a href="#">قصص النجاح</a> <a href="#">المدونة</a> <a href="#">الوظائف</a>
+    </div>
+    <div class="footer-section">
+     <h3>القانونية</h3><a href="#">سياسة الخصوصية</a> <a href="#">شروط الخدمة</a> <a href="#">اتفاقية معالجة البيانات</a>
+    </div>
+    <div class="footer-section">
+     <h3>تواصل معنا</h3>
+     <p>📱 +968 98567383</p>
+     <p>📧 info@momentconnect.com</p>
+     <p>🌐 www.momentconnect.com</p>
+    </div>
+   </div>
+   <div class="footer-bottom">
+    <p>© 2024 Moment+. جميع الحقوق محفوظة.</p>
+   </div>
+  </footer><!-- WhatsApp Float Button --> <a href="#" class="whatsapp-float" title="تواصل عبر واتساب"> 📱 </a>
+  <script>
+    const defaultConfig = {
+      primary_color: "#25D366",
+      secondary_color: "#128C7E",
+      background_color: "#ffffff",
+      text_color: "#333333",
+      accent_color: "#fbbf24",
+      company_name: "Moment+",
+      hero_title: "نحوّل محادثات واتساب إلى نموّ مُقاس",
+      hero_subtitle: "أتمتة – صندوق رسائل – قوالب رسمية – تقارير – تكاملات CRM",
+      phone: "+968 98567383",
+      email: "info@momentconnect.com",
+      website: "www.momentconnect.com",
+      font_family: "Segoe UI",
+      font_size: 16
+    };
+
+    // FAQ Toggle
+    function toggleFaq(element) {
+      const answer = element.nextElementSibling;
+      const isActive = answer.classList.contains('active');
+      
+      // Close all FAQ answers
+      document.querySelectorAll('.faq-answer').forEach(ans => {
+        ans.classList.remove('active');
+      });
+      
+      // Open clicked FAQ if it wasn't active
+      if (!isActive) {
+        answer.classList.add('active');
+      }
+    }
+
+    // Calculator
+    function calculatePrice() {
+      const macInput = document.getElementById('mac-input');
+      const resultDiv = document.getElementById('calculator-result');
+      const packageDiv = document.getElementById('recommended-package');
+      
+      const macCount = parseInt(macInput.value) || 1000;
+      
+      let recommendedPackage = '';
+      let price = '';
+      
+      let broadcastInfo = '';
+      
+      if (macCount <= 1000) {
+        recommendedPackage = 'M+ Core | نبضة';
+        price = '648 ر.ع';
+        broadcastInfo = 'رسائل جماعية بسيطة: مرّتين بالشهر، مجموعة عملاء واحدة';
+      } else if (macCount <= 2500) {
+        recommendedPackage = 'M+ Boost | زخم';
+        price = '1,304 ر.ع';
+        broadcastInfo = 'رسائل جماعية أكثر: 8 حملات شهريًا، 5 مجموعات + تتبع';
+      } else if (macCount <= 5000) {
+        recommendedPackage = 'M+ Pro | برق';
+        price = '2,287 ر.ع';
+        broadcastInfo = 'رسائل تلقائية ذكية: 20 حملة شهريًا + اختبار رسالتين';
+      } else {
+        recommendedPackage = 'M+ Enterprise | شراكة';
+        price = 'عرض مخصص';
+        broadcastInfo = 'رسائل بلا حدود + دعم للحملات الكبيرة';
+      }
+      
+      packageDiv.innerHTML = `
+        <h4 style="color: #25D366;">${recommendedPackage}</h4>
+        <p style="font-size: 1.5rem; font-weight: bold;">${price}</p>
+        <p>لعدد ${macCount.toLocaleString()} جهة اتصال نشطة</p>
+        <div style="background: #e8f5e8; padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+          <p style="margin: 0; font-weight: bold; color: #25D366;">📢 ${broadcastInfo}</p>
+        </div>
+        <button class="card-button" onclick="requestQuote('${recommendedPackage}')" style="margin-top: 1rem;">احجز اجتماع</button>
+      `;
+      
+      resultDiv.style.display = 'block';
+    }
+
+    // Request Quote
+    function requestQuote(packageName) {
+      const message = مرحباً، أريد حجز اجتماع مع الفريق لمناقشة باقة ${packageName};
+      const whatsappUrl = https://wa.me/96898567383?text=${encodeURIComponent(message)};
+      window.open(whatsappUrl, '_blank');
+    }
+
+    // Book Meeting
+    function bookMeeting() {
+      const message = مرحباً، أريد حجز اجتماع مع الفريق لمناقشة حلول Moment+ لشركتي;
+      const whatsappUrl = https://wa.me/96898567383?text=${encodeURIComponent(message)};
+      window.open(whatsappUrl, '_blank');
+    }
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Animation on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-on-scroll');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    document.querySelectorAll('.section').forEach(section => {
+      observer.observe(section);
+    });
+
+    async function onConfigChange(config) {
+      const primaryColor = config.primary_color || defaultConfig.primary_color;
+      const secondaryColor = config.secondary_color || defaultConfig.secondary_color;
+      const backgroundColor = config.background_color || defaultConfig.background_color;
+      const textColor = config.text_color || defaultConfig.text_color;
+      const accentColor = config.accent_color || defaultConfig.accent_color;
+      const customFont = config.font_family || defaultConfig.font_family;
+      const baseSize = config.font_size || defaultConfig.font_size;
+
+      // Update colors
+      document.documentElement.style.setProperty('--primary-color', primaryColor);
+      document.documentElement.style.setProperty('--secondary-color', secondaryColor);
+      document.documentElement.style.setProperty('--background-color', backgroundColor);
+      document.documentElement.style.setProperty('--text-color', textColor);
+      document.documentElement.style.setProperty('--accent-color', accentColor);
+
+      // Update gradients
+      const gradientElements = document.querySelectorAll('.hero, .header');
+      gradientElements.forEach(el => {
+        el.style.background = linear-gradient(135deg, ${primaryColor} 0%, ${secondaryColor} 100%);
+      });
+
+      // Update section titles
+      document.querySelectorAll('.section-title').forEach(el => {
+        el.style.color = primaryColor;
+        el.style.fontFamily = ${customFont}, Tahoma, Geneva, Verdana, sans-serif;
+        el.style.fontSize = ${baseSize * 2.5}px;
+      });
+
+      // Update feature titles
+      document.querySelectorAll('.feature-title').forEach(el => {
+        el.style.color = primaryColor;
+        el.style.fontFamily = ${customFont}, Tahoma, Geneva, Verdana, sans-serif;
+        el.style.fontSize = ${baseSize * 1.3}px;
+      });
+
+      // Update package names
+      document.querySelectorAll('.package-name').forEach(el => {
+        el.style.color = primaryColor;
+        el.style.fontFamily = ${customFont}, Tahoma, Geneva, Verdana, sans-serif;
+        el.style.fontSize = ${baseSize * 1.5}px;
+      });
+
+      // Update buttons
+      document.querySelectorAll('.card-button, .btn-primary').forEach(el => {
+        el.style.backgroundColor = primaryColor;
+        el.style.fontFamily = ${customFont}, Tahoma, Geneva, Verdana, sans-serif;
+      });
+
+      // Update WhatsApp button
+      document.querySelector('.whatsapp-float').style.backgroundColor = primaryColor;
+
+      // Update text content
+      document.getElementById('company-name').textContent = config.company_name || defaultConfig.company_name;
+      document.getElementById('hero-title').textContent = config.hero_title || defaultConfig.hero_title;
+      document.getElementById('hero-subtitle').textContent = config.hero_subtitle || defaultConfig.hero_subtitle;
+      document.getElementById('phone').textContent = config.phone || defaultConfig.phone;
+      document.getElementById('email').textContent = config.email || defaultConfig.email;
+      document.getElementById('website').textContent = config.website || defaultConfig.website;
+
+      // Update font family for all text
+      document.body.style.fontFamily = ${customFont}, Tahoma, Geneva, Verdana, sans-serif;
+      document.body.style.fontSize = ${baseSize}px;
+    }
+
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities: (config) => ({
+          recolorables: [
+            {
+              get: () => config.primary_color || defaultConfig.primary_color,
+              set: (value) => {
+                config.primary_color = value;
+                window.elementSdk.setConfig({ primary_color: value });
+              }
+            },
+            {
+              get: () => config.secondary_color || defaultConfig.secondary_color,
+              set: (value) => {
+                config.secondary_color = value;
+                window.elementSdk.setConfig({ secondary_color: value });
+              }
+            },
+            {
+              get: () => config.background_color || defaultConfig.background_color,
+              set: (value) => {
+                config.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => config.text_color || defaultConfig.text_color,
+              set: (value) => {
+                config.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => config.accent_color || defaultConfig.accent_color,
+              set: (value) => {
+                config.accent_color = value;
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: {
+            get: () => config.font_family || defaultConfig.font_family,
+            set: (value) => {
+              config.font_family = value;
+              window.elementSdk.setConfig({ font_family: value });
+            }
+          },
+          fontSizeable: {
+            get: () => config.font_size || defaultConfig.font_size,
+            set: (value) => {
+              config.font_size = value;
+              window.elementSdk.setConfig({ font_size: value });
+            }
+          }
+        }),
+        mapToEditPanelValues: (config) => new Map([
+          ["company_name", config.company_name || defaultConfig.company_name],
+          ["hero_title", config.hero_title || defaultConfig.hero_title],
+          ["hero_subtitle", config.hero_subtitle || defaultConfig.hero_subtitle],
+          ["phone", config.phone || defaultConfig.phone],
+          ["email", config.email || defaultConfig.email],
+          ["website", config.website || defaultConfig.website]
+        ])
+      });
+    }
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99a2c4e50718c951',t:'MTc2MjQxMzAwNS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
