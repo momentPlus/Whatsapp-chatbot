@@ -1,0 +1,1233 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Moment+ | حلول واتساب النخبة للأعمال</title>
+  <meta name="description" content="Moment+ يقدّم حلول واتساب احترافية في عُمان: أتمتة محادثات، بث قانوني، قوالب رسمية، تقارير وتكاملات CRM. جرّب مجانًا 7 أيام.">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+  
+  <!-- Icons (Phosphor via CDN for cleaner look or simple SVGs) -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+  <style>
+    :root {
+      --primary: #00e676; /* Vivid Green */
+      --primary-dark: #00a854;
+      --secondary: #FFD700; /* Gold */
+      --bg-dark: #0a0f1c; /* Deep Midnight */
+      --bg-card: rgba(255, 255, 255, 0.03);
+      --bg-glass: rgba(20, 25, 40, 0.7);
+      --text-main: #ffffff;
+      --text-muted: #94a3b8;
+      --accent-gradient: linear-gradient(135deg, #00e676 0%, #128C7E 100%);
+      --gold-gradient: linear-gradient(135deg, #FFD700 0%, #FDB931 100%);
+      --border-glass: rgba(255, 255, 255, 0.1);
+      --shadow-glow: 0 0 20px rgba(0, 230, 118, 0.3);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Cairo', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.7;
+      overflow-x: hidden;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(0, 230, 118, 0.05) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(18, 140, 126, 0.05) 0%, transparent 20%);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #333;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--primary);
+    }
+
+    /* Animations */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    @keyframes pulse-glow {
+      0% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0.4); }
+      70% { box-shadow: 0 0 0 15px rgba(0, 230, 118, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(0, 230, 118, 0); }
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    /* Glassmorphism Utility */
+    .glass {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-glass);
+      border-radius: 24px;
+    }
+    
+    .glass-header {
+      background: rgba(10, 15, 28, 0.85);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-glass);
+    }
+
+    /* Header */
+    .header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 1rem 0;
+      transition: all 0.3s ease;
+    }
+    
+    .header.scrolled {
+      padding: 0.8rem 0;
+    }
+
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 900;
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+    }
+
+    .nav-menu {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-menu a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+      position: relative;
+    }
+
+    .nav-menu a:hover {
+      color: var(--primary);
+    }
+    
+    .nav-menu a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -5px;
+      left: 0;
+      background: var(--primary);
+      transition: width 0.3s;
+    }
+    
+    .nav-menu a:hover::after {
+      width: 100%;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 0.8rem 2rem;
+      border-radius: 50px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary {
+      background: var(--accent-gradient);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(0, 230, 118, 0.2);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0, 230, 118, 0.4);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid rgba(255,255,255,0.2);
+      color: #fff;
+    }
+
+    .btn-outline:hover {
+      border-color: var(--primary);
+      background: rgba(0, 230, 118, 0.1);
+      color: var(--primary);
+    }
+
+    .btn-gold {
+      background: var(--gold-gradient);
+      color: #000;
+      box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
+    }
+    
+    .btn-gold:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+    }
+
+    /* Hero Section */
+    .hero {
+      padding: 10rem 2rem 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* Background effects for Hero */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 230, 118, 0.15) 0%, transparent 70%);
+      filter: blur(60px);
+      z-index: -1;
+      animation: pulse-glow 8s infinite;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+      font-weight: 900;
+    }
+
+    .hero h1 span {
+      color: var(--primary);
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: 0 auto 3rem;
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 6rem 2rem;
+      position: relative;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 800;
+    }
+    
+    .section-desc {
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 4rem;
+      font-size: 1.1rem;
+    }
+
+    /* Cards */
+    .grid-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .feature-card {
+      padding: 2.5rem;
+      text-align: center;
+      transition: transform 0.3s, border-color 0.3s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+      border-color: rgba(0, 230, 118, 0.3);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      background: rgba(0, 230, 118, 0.1);
+      width: 80px;
+      height: 80px;
+      line-height: 80px;
+      border-radius: 50%;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Quick Nav - New Style */
+    .quick-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 1rem;
+    }
+    
+    .quick-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1.5rem;
+      text-decoration: none;
+      color: var(--text-main);
+      transition: all 0.3s;
+    }
+    
+    .quick-nav-item:hover {
+      background: rgba(0, 230, 118, 0.1);
+      border-color: var(--primary);
+    }
+    
+    .quick-nav-item i {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      color: var(--primary);
+    }
+
+    /* Pricing */
+    .pricing-card {
+      position: relative;
+      padding: 3rem 2rem;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s ease;
+    }
+
+    .pricing-card:hover {
+      transform: scale(1.03);
+      border-color: var(--primary);
+      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    .pricing-card.popular {
+      border-color: var(--secondary);
+      background: rgba(255, 215, 0, 0.05);
+    }
+    
+    .pricing-card.popular::before {
+      content: 'الأكثر طلباً ⭐';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--gold-gradient);
+      color: #000;
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
+      font-weight: bold;
+      font-size: 0.9rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .price-amount {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin: 1rem 0;
+    }
+    
+    .price-period {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 400;
+    }
+
+    .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 2rem 0;
+      flex-grow: 1;
+    }
+
+    .features-list li {
+      margin-bottom: 1rem;
+      color: #cbd5e1;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .features-list li i {
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+
+    /* Demo Section (The Phone Look) */
+    .demo-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    
+    .phone-mockup {
+      background: #000;
+      border-radius: 40px;
+      padding: 10px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 2px #333;
+      position: relative;
+      max-width: 400px;
+      margin: 0 auto;
+      aspect-ratio: 9/18;
+    }
+    
+    .phone-screen {
+      background: #f0f2f5;
+      border-radius: 32px;
+      height: 100%;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .chat-header {
+      background: #075E54;
+      padding: 3rem 1rem 1rem;
+      color: white;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .chat-area {
+      flex-grow: 1;
+      padding: 1rem;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+      background-size: contain;
+    }
+    
+    .msg {
+      max-width: 80%;
+      padding: 0.8rem;
+      border-radius: 15px;
+      font-size: 0.9rem;
+      position: relative;
+      line-height: 1.4;
+    }
+    
+    .msg-in {
+      background: white;
+      color: #333;
+      border-top-right-radius: 0;
+      align-self: flex-start;
+    }
+    
+    .msg-out {
+      background: #dcf8c6;
+      color: #333;
+      border-top-left-radius: 0;
+      align-self: flex-end;
+    }
+
+    .chat-input-area {
+      padding: 0.8rem;
+      background: #f0f2f5;
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    
+    .chat-input {
+      flex-grow: 1;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 25px;
+      outline: none;
+    }
+
+    /* Calculator */
+    .calculator-box {
+      text-align: center;
+      padding: 3rem;
+    }
+    
+    .calc-input-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 2rem 0;
+      flex-wrap: wrap;
+    }
+    
+    .calc-input {
+      background: rgba(0,0,0,0.2);
+      border: 2px solid var(--border-glass);
+      color: white;
+      padding: 1rem;
+      border-radius: 12px;
+      font-size: 1.2rem;
+      width: 200px;
+      text-align: center;
+      outline: none;
+    }
+    
+    .calc-input:focus {
+      border-color: var(--primary);
+    }
+
+    /* FAQ */
+    .faq-item {
+      margin-bottom: 1rem;
+    }
+    
+    .faq-question {
+      width: 100%;
+      text-align: right;
+      padding: 1.5rem;
+      background: rgba(255,255,255,0.03);
+      border: none;
+      color: white;
+      font-size: 1.1rem;
+      font-family: inherit;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 15px;
+      transition: all 0.3s;
+    }
+    
+    .faq-question:hover, .faq-question.active {
+      background: rgba(255,255,255,0.08);
+    }
+    
+    .faq-answer {
+      display: none;
+      padding: 1.5rem;
+      color: #cbd5e1;
+      line-height: 1.8;
+    }
+    
+    .faq-answer.active {
+      display: block;
+      animation: fadeInUp 0.3s ease-out;
+    }
+
+    /* Form Modal */
+    .modal-backdrop {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      backdrop-filter: blur(5px);
+      z-index: 2000;
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .modal-backdrop.active {
+      display: flex;
+    }
+    
+    .modal-content {
+      background: #1e293b;
+      padding: 3rem;
+      border-radius: 24px;
+      width: 100%;
+      max-width: 500px;
+      position: relative;
+      border: 1px solid var(--border-glass);
+    }
+
+    .form-field {
+      width: 100%;
+      padding: 1rem;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      color: white;
+      margin-bottom: 1rem;
+      outline: none;
+      font-family: inherit;
+    }
+    
+    .form-field:focus {
+      border-color: var(--primary);
+    }
+
+    /* Floating WhatsApp */
+    .wa-float {
+      position: fixed;
+      bottom: 30px;
+      left: 30px;
+      width: 60px;
+      height: 60px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      color: white;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+      z-index: 999;
+      transition: transform 0.3s;
+      animation: pulse-glow 2s infinite;
+    }
+    
+    .wa-float:hover {
+      transform: scale(1.1) rotate(10deg);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .demo-wrapper {
+        grid-template-columns: 1fr;
+      }
+      .hero h1 {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-menu { display: none; }
+      .hero { padding-top: 8rem; }
+      .hero h1 { font-size: 2.5rem; }
+      .pricing-card.popular { transform: scale(1); }
+    }
+
+    /* Utilities */
+    .text-gradient {
+      background: var(--accent-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    
+    .text-gold {
+      color: var(--secondary);
+    }
+    
+    .mb-1 { margin-bottom: 0.5rem; }
+    .mb-2 { margin-bottom: 1rem; }
+  </style>
+ </head>
+ <body>
+
+  <!-- Header -->
+  <header class="header glass-header" id="main-header">
+   <div class="nav-container">
+    <div class="logo">Moment+</div>
+    <nav>
+     <ul class="nav-menu">
+      <li><a href="#pricing">الأسعار</a></li>
+      <li><a href="#features">الميزات</a></li>
+      <li><a href="#use-cases">القطاعات</a></li>
+      <li><a href="#faq">الأسئلة الشائعة</a></li>
+     </ul>
+    </nav>
+    <a href="#contact" class="btn btn-primary">تواصل معنا</a>
+   </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+   <div class="container animate-on-scroll">
+    <h1>نحوّل محادثات واتساب<br>إلى <span class="text-gradient">نموّ لا يتوقف</span></h1>
+    <p class="hero-subtitle">المنصة المتكاملة الأرقى في عُمان لأتمتة محادثات الأعمال، البث القانوني، وربط الأنظمة الذكية.</p>
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+      <button onclick="showBookingForm()" class="btn btn-primary">احجز استشارة خاصة</button> 
+      <a href="#demo" class="btn btn-outline">جولة في النظام</a>
+    </div>
+   </div>
+  </section>
+
+  <!-- Quick Nav (Grid) -->
+  <section class="section">
+    <div class="container">
+      <div class="glass" style="padding: 2rem;">
+        <p class="section-desc" style="margin-bottom: 2rem;">تصفح سريع لما يهمك</p>
+        <div class="quick-nav-grid">
+          <a href="#pricing" class="quick-nav-item glass">
+            <i class="ph ph-currency-dollar"></i>
+            <span>الأسعار</span>
+          </a>
+          <a href="#demo" class="quick-nav-item glass" style="border-color: var(--primary);">
+            <i class="ph ph-game-controller"></i>
+            <span class="text-gradient">جرب النظام</span>
+          </a>
+          <a href="#calculator" class="quick-nav-item glass">
+            <i class="ph ph-calculator"></i>
+            <span>حاسبة التكلفة</span>
+          </a>
+          <a href="#verification" class="quick-nav-item glass">
+            <i class="ph ph-check-circle"></i>
+            <span>التوثيق</span>
+          </a>
+          <a href="#features" class="quick-nav-item glass">
+            <i class="ph ph-star"></i>
+            <span>الميزات</span>
+          </a>
+          <a href="#kpis" class="quick-nav-item glass">
+            <i class="ph ph-chart-line-up"></i>
+            <span>مؤشرات الأداء</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive DEMO Section -->
+  <section id="demo" class="section">
+   <div class="container">
+    <h2 class="section-title">تجربة <span class="text-gradient">تفاعلية</span></h2>
+    <p class="section-desc">جرب بنفسك كيف يدير نظام Moment+ المحادثات بذكاء</p>
+    
+    <div class="demo-wrapper">
+      <!-- The Phone Mockup -->
+      <div class="phone-mockup animate-on-scroll">
+        <div class="phone-screen">
+          <div class="chat-header">
+             <div style="width: 40px; height: 40px; background: white; border-radius: 50%; display:flex; justify-content:center; align-items:center; color:#075E54; font-weight:bold;">M+</div>
+             <div>
+               <div style="font-weight:bold;">Moment+ AI</div>
+               <div style="font-size:0.8rem; opacity:0.8;">متصل الآن</div>
+             </div>
+          </div>
+          <div class="chat-area" id="chat-messages">
+            <div class="msg msg-in">مرحباً! 👋 كيف يمكنني مساعدتك في تطوير أعمالك اليوم؟</div>
+          </div>
+          <div style="padding: 0.5rem; display: flex; gap: 0.5rem; overflow-x: auto; padding-bottom: 0;">
+             <button onclick="sendQuickReply('الأسعار')" class="btn" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; background: white; color: #075E54; border: 1px solid #eee;">💰 الأسعار</button>
+             <button onclick="sendQuickReply('الميزات')" class="btn" style="padding: 0.3rem 0.8rem; font-size: 0.8rem; background: white; color: #075E54; border: 1px solid #eee;">✨ الميزات</button>
+          </div>
+          <div class="chat-input-area">
+            <input type="text" id="demo-message-input" class="chat-input" placeholder="اكتب رسالة..." onkeypress="if(event.key === 'Enter') sendDemoMessage()">
+            <button onclick="sendDemoMessage()" style="background: #075E54; border: none; width: 40px; height: 40px; border-radius: 50%; color: white; cursor: pointer;"><i class="ph ph-paper-plane-right"></i></button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Features Description Next to Phone -->
+      <div class="animate-on-scroll">
+        <div class="glass" style="padding: 2rem; margin-bottom: 2rem;">
+          <h3 style="margin-top:0; color: var(--primary); display: flex; align-items: center; gap: 10px;">
+            <i class="ph ph-broadcast"></i> البث الذكي
+          </h3>
+          <p style="color: #cbd5e1;">أرسل عروضك لآلاف العملاء بضغطة زر مع ضمان عدم الحظر.</p>
+          <div style="margin-top: 1rem;">
+            <label style="display: block; margin-bottom: 0.5rem; color: #94a3b8;">اختر الجمهور:</label>
+            <select id="broadcast-group" class="form-field" style="margin-bottom: 0.5rem;">
+               <option value="all">جميع العملاء (VIP)</option>
+               <option value="active">العملاء النشطون</option>
+            </select>
+            <button onclick="sendBroadcast()" class="btn btn-primary" style="width: 100%; border-radius: 12px;">إطلاق الحملة 🚀</button>
+            <div id="broadcast-result" style="display:none; margin-top: 1rem; color: var(--primary); font-size: 0.9rem;">✅ تم الإرسال بنجاح! معدل الفتح المتوقع: 85%</div>
+          </div>
+        </div>
+
+        <div class="glass" style="padding: 2rem; display: flex; justify-content: space-around; text-align: center;">
+           <div>
+             <div class="text-gradient" style="font-size: 2rem; font-weight: bold;" id="demo-messages-count">0</div>
+             <div style="font-size: 0.8rem; color: #94a3b8;">رسالة اليوم</div>
+           </div>
+           <div>
+             <div class="text-gradient" style="font-size: 2rem; font-weight: bold;">98%</div>
+             <div style="font-size: 0.8rem; color: #94a3b8;">رضا العملاء</div>
+           </div>
+           <div>
+             <div class="text-gradient" style="font-size: 2rem; font-weight: bold;">24/7</div>
+             <div style="font-size: 0.8rem; color: #94a3b8;">عمل النظام</div>
+           </div>
+        </div>
+      </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section id="pricing" class="section">
+   <div class="container">
+    <h2 class="section-title">باقات مصممة <span class="text-gradient">للنمو</span></h2>
+    <p class="section-desc">شاملة الضريبة 5% ورسوم الإطلاق الذكي لمرة واحدة</p>
+    
+    <div class="grid-cards">
+     <!-- Core -->
+     <div class="glass pricing-card animate-on-scroll">
+      <h3 style="margin: 0; color: var(--primary);">M+ Core | نبضة</h3>
+      <div class="price-amount">498.2 <span style="font-size: 1rem;">ر.ع</span></div>
+      <p class="price-period">سنوياً | مثالية للبدء</p>
+      
+      <ul class="features-list">
+       <li><i class="ph ph-check"></i> صندوق رسائل موحّد</li>
+       <li><i class="ph ph-check"></i> قوالب رسمية معتمدة</li>
+       <li><i class="ph ph-check"></i> حتى 1,000 عميل نشط</li>
+       <li><i class="ph ph-check"></i> رقم واتساب واحد</li>
+       <li style="opacity: 0.5;"><i class="ph ph-x"></i> بدون أتمتة متقدمة</li>
+      </ul>
+      <button class="btn btn-outline" onclick="requestQuote('Core')">احجز الباقة</button>
+     </div>
+
+     <!-- Boost (Popular) -->
+     <div class="glass pricing-card popular animate-on-scroll" style="transform: scale(1.05);">
+      <h3 style="margin: 0; color: var(--secondary);">M+ Boost | زخم</h3>
+      <div class="price-amount text-gold">1,000 <span style="font-size: 1rem;">ر.ع</span></div>
+      <p class="price-period">سنوياً | الخيار الأفضل للنمو</p>
+      
+      <ul class="features-list">
+       <li><i class="ph ph-check-circle" style="color: var(--secondary);"></i> كل ميزات Core</li>
+       <li><i class="ph ph-check-circle" style="color: var(--secondary);"></i> 8 حملات بث شهرياً</li>
+       <li><i class="ph ph-check-circle" style="color: var(--secondary);"></i> 5 مجموعات عملاء</li>
+       <li><i class="ph ph-check-circle" style="color: var(--secondary);"></i> تتبع الروابط والتحليلات</li>
+       <li><i class="ph ph-check-circle" style="color: var(--secondary);"></i> ربط CRM أساسي</li>
+      </ul>
+      <button class="btn btn-gold" onclick="requestQuote('Boost')">احجز الباقة</button>
+     </div>
+
+     <!-- Pro -->
+     <div class="glass pricing-card animate-on-scroll">
+      <h3 style="margin: 0; color: #ec4899;">M+ Pro | برق</h3>
+      <div class="price-amount">1,759.5 <span style="font-size: 1rem;">ر.ع</span></div>
+      <p class="price-period">سنوياً | للأتمتة الكاملة</p>
+      
+      <ul class="features-list">
+       <li><i class="ph ph-check"></i> كل ميزات Boost</li>
+       <li><i class="ph ph-check"></i> أتمتة ذكية (Chatbots)</li>
+       <li><i class="ph ph-check"></i> اختبار A/B للرسائل</li>
+       <li><i class="ph ph-check"></i> ربط كامل (Full API)</li>
+       <li><i class="ph ph-check"></i> مجموعات عملاء غير محدودة</li>
+      </ul>
+      <button class="btn btn-outline" onclick="requestQuote('Pro')">احجز الباقة</button>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- Calculator -->
+  <section id="calculator" class="section">
+   <div class="container">
+    <div class="glass calculator-box animate-on-scroll">
+     <h2 style="margin-bottom: 1rem;">حاسبة التكلفة الذكية</h2>
+     <p style="color: #94a3b8;">أدخل عدد العملاء النشطين شهرياً (MAC) لمعرفة الباقة الأنسب</p>
+     
+     <div class="calc-input-group">
+        <input type="number" id="mac-input" class="calc-input" placeholder="مثلاً: 1500" min="1">
+        <button onclick="calculatePrice()" class="btn btn-primary">احسب الآن</button>
+     </div>
+     
+     <div id="calculator-result" style="display: none; margin-top: 2rem; padding: 2rem; background: rgba(255,255,255,0.05); border-radius: 16px;">
+      <h3 style="color: #cbd5e1;">الباقة المقترحة:</h3>
+      <div id="recommended-package"></div>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- Features Grid -->
+  <section id="features" class="section">
+   <div class="container">
+    <h2 class="section-title">تقنيات <span class="text-gradient">المستقبل</span></h2>
+    <div class="grid-cards" style="margin-top: 3rem;">
+     <div class="glass feature-card animate-on-scroll">
+      <div class="feature-icon"><i class="ph ph-chats-circle"></i></div>
+      <h3>صندوق موحّد</h3>
+      <p style="color: var(--text-muted);">فريقك بالكامل يدير المحادثات من واجهة واحدة منظمة.</p>
+     </div>
+     <div class="glass feature-card animate-on-scroll">
+      <div class="feature-icon"><i class="ph ph-robot"></i></div>
+      <h3>أتمتة ذكية</h3>
+      <p style="color: var(--text-muted);">بوتات ذكية ترد وتبيع وتخدم عملائك 24/7.</p>
+     </div>
+     <div class="glass feature-card animate-on-scroll">
+      <div class="feature-icon"><i class="ph ph-shield-check"></i></div>
+      <h3>أمان وموثوقية</h3>
+      <p style="color: var(--text-muted);">توثيق رسمي (Green Tick) وحماية من الحظر.</p>
+     </div>
+     <div class="glass feature-card animate-on-scroll">
+      <div class="feature-icon"><i class="ph ph-chart-bar"></i></div>
+      <h3>تحليلات عميقة</h3>
+      <p style="color: var(--text-muted);">تقارير تفصيلية عن أداء الفريق وتفاعل العملاء.</p>
+     </div>
+     <div class="glass feature-card animate-on-scroll">
+      <div class="feature-icon"><i class="ph ph-plugs"></i></div>
+      <h3>تكامل CRM</h3>
+      <p style="color: var(--text-muted);">اربط مع Zoho, Odoo, HubSpot وغيرها.</p>
+     </div>
+     <div class="glass feature-card animate-on-scroll">
+      <div class="feature-icon"><i class="ph ph-users-three"></i></div>
+      <h3>دعم محلي</h3>
+      <p style="color: var(--text-muted);">فريق دعم في عُمان جاهز لخدمتك دائماً.</p>
+     </div>
+    </div>
+   </div>
+  </section>
+
+  <!-- Verification Section (Styled) -->
+  <section id="verification" class="section" style="background: linear-gradient(to bottom, var(--bg-dark), #0f1e18);">
+    <div class="container">
+      <h2 class="section-title">التوثيق <span class="text-gradient">والعلامة الخضراء</span></h2>
+      <div class="grid-cards" style="grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); margin-top: 3rem;">
+        <div class="glass animate-on-scroll" style="padding: 2.5rem; border-top: 4px solid #1877f2;">
+          <h3 style="color: #1877f2; font-size: 1.8rem; margin-bottom: 1rem;">1️⃣ التوثيق التجاري (إلزامي)</h3>
+          <p style="color: #cbd5e1; margin-bottom: 1.5rem;">مطلوب لاستخدام API. نقوم بربط سجلك التجاري مع Meta Business Manager.</p>
+          <div style="background: rgba(24, 119, 242, 0.1); padding: 1rem; border-radius: 8px; color: #60a5fa;">
+            ⏱️ المدة: 2 - 5 أيام عمل
+          </div>
+        </div>
+        <div class="glass animate-on-scroll" style="padding: 2.5rem; border-top: 4px solid #00e676;">
+          <h3 style="color: #00e676; font-size: 1.8rem; margin-bottom: 1rem;">2️⃣ العلامة الخضراء (نخبة)</h3>
+          <p style="color: #cbd5e1; margin-bottom: 1.5rem;">علامة التوثيق الرسمية بجانب الاسم. تتطلب حضوراً إعلامياً قوياً واسماً معروفاً.</p>
+          <div style="background: rgba(0, 230, 118, 0.1); padding: 1rem; border-radius: 8px; color: #69f0ae;">
+            ⏱️ المدة: 3 - 15 يوم عمل
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KPI Section -->
+  <section id="kpis" class="section">
+    <div class="container">
+      <h2 class="section-title">نقيس <span style="color: var(--secondary);">النجاح</span> بالأرقام</h2>
+      <div class="grid-cards" style="margin-top: 3rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+        <div class="glass" style="padding: 2rem; text-align: center;">
+          <h3 class="text-gradient" style="font-size: 2.5rem; margin: 0;">&lt; 2m</h3>
+          <p style="margin-top: 0.5rem;">سرعة أول رد</p>
+        </div>
+        <div class="glass" style="padding: 2rem; text-align: center;">
+          <h3 class="text-gradient" style="font-size: 2.5rem; margin: 0;">95%</h3>
+          <p style="margin-top: 0.5rem;">نسبة إغلاق التذاكر</p>
+        </div>
+        <div class="glass" style="padding: 2rem; text-align: center;">
+          <h3 class="text-gradient" style="font-size: 2.5rem; margin: 0;">30%+</h3>
+          <p style="margin-top: 0.5rem;">معدل النقر (CTR)</p>
+        </div>
+        <div class="glass" style="padding: 2rem; text-align: center;">
+          <h3 class="text-gradient" style="font-size: 2.5rem; margin: 0;">24/7</h3>
+          <p style="margin-top: 0.5rem;">توافر النظام</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="section">
+   <div class="container" style="max-width: 800px;">
+    <h2 class="section-title">أسئلة شائعة</h2>
+    
+    <div class="faq-item glass">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>ما هو العميل النشط (MAC)؟</span>
+        <i class="ph ph-caret-down"></i>
+      </button>
+      <div class="faq-answer">
+        هو أي شخص يحدث بينك وبينه تواصل خلال الشهر (سواء أرسل لك أو أرسلت له). تدفع فقط مقابل من تتواصل معهم فعلياً.
+      </div>
+    </div>
+
+    <div class="faq-item glass">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>هل يشمل السعر رسوم واتساب؟</span>
+        <i class="ph ph-caret-down"></i>
+      </button>
+      <div class="faq-answer">
+        سعر الباقة يغطي النظام والخدمة. رسوم محادثات واتساب (التي تفرضها Meta) تُحسب وتُضاف للفاتورة بشكل منفصل حسب الاستهلاك الفعلي بشفافية تامة.
+      </div>
+    </div>
+
+    <div class="faq-item glass">
+      <button class="faq-question" onclick="toggleFaq(this)">
+        <span>كم يستغرق التفعيل؟</span>
+        <i class="ph ph-caret-down"></i>
+      </button>
+      <div class="faq-answer">
+        عادة نطلق الخدمة بالكامل خلال 3 إلى 5 أيام عمل، تشمل التوثيق، الإعداد، وتدريب الفريق.
+      </div>
+    </div>
+
+   </div>
+  </section>
+
+  <!-- Footer -->
+  <footer style="border-top: 1px solid var(--border-glass); padding: 4rem 2rem; background: #050810;">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem;">
+        <div>
+          <h3 class="logo" style="margin-top: 0;">Moment+</h3>
+          <p style="color: var(--text-muted);">الشريك الاستراتيجي لنمو أعمالك عبر واتساب في سلطنة عُمان.</p>
+        </div>
+        <div>
+          <h4 style="color: white;">روابط</h4>
+          <ul style="list-style: none; padding: 0; color: var(--text-muted);">
+            <li class="mb-1"><a href="#pricing" style="color: inherit; text-decoration: none;">الأسعار</a></li>
+            <li class="mb-1"><a href="#features" style="color: inherit; text-decoration: none;">الميزات</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: white;">تواصل</h4>
+          <p style="color: var(--text-muted);">info@momentconnect.com</p>
+          <p style="color: var(--text-muted);">+968 98567383</p>
+        </div>
+      </div>
+      <div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.05); color: var(--text-muted); font-size: 0.9rem;">
+        © 2024 Moment+. جميع الحقوق محفوظة.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Booking Modal -->
+  <div class="modal-backdrop" id="bookingModal">
+    <div class="modal-content animate-on-scroll">
+      <button onclick="closeBookingForm()" style="position: absolute; left: 20px; top: 20px; background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer;">&times;</button>
+      <h2 style="text-align: center; margin-bottom: 0.5rem;">احجز استشارتك</h2>
+      <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem;">سنناقش كيف يمكن لـ Moment+ تطوير مبيعاتك</p>
+      
+      <form id="meetingForm" onsubmit="submitBookingForm(event)">
+        <input type="text" name="name" class="form-field" placeholder="الاسم الكامل" required>
+        <input type="tel" name="phone" class="form-field" placeholder="رقم الواتساب" required>
+        <input type="email" name="email" class="form-field" placeholder="البريد الإلكتروني">
+        <input type="text" name="company" class="form-field" placeholder="اسم الشركة">
+        <button type="submit" class="btn btn-primary" style="width: 100%;" id="submitBtn">تأكيد الحجز</button>
+      </form>
+      
+      <div id="successMessage" style="display: none; text-align: center;">
+        <div style="font-size: 3rem; margin-bottom: 1rem;">✅</div>
+        <h3>تم استلام طلبك!</h3>
+        <p style="color: var(--text-muted);">سيتواصل معك فريقنا خلال ساعات العمل.</p>
+        <button onclick="closeBookingForm()" class="btn btn-outline" style="margin-top: 1rem;">إغلاق</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Elements -->
+  <a href="https://wa.me/96898567383" target="_blank" class="wa-float">
+    <i class="ph ph-whatsapp-logo"></i>
+  </a>
+
+  <script>
+    // Animations and Logic
+    
+    // Scroll Header Effect
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('main-header');
+      if (window.scrollY > 50) {
+        header.classList.add('scrolled');
+      } else {
+        header.classList.remove('scrolled');
+      }
+    });
+
+    // Intersection Observer for FadeIn Animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.animationPlayState = 'running'; // Ensure animation runs
+        }
+      });
+    });
+    
+    document.querySelectorAll('.animate-on-scroll').forEach(el => {
+      // el.style.opacity = '0'; // Handled in CSS
+      observer.observe(el);
+    });
+
+    // FAQ Toggle
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const isActive = answer.classList.contains('active');
+      
+      // Close all
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+      
+      if (!isActive) {
+        answer.classList.add('active');
+      }
+    }
+
+    // Calculator Logic
+    function calculatePrice() {
+      const mac = parseInt(document.getElementById('mac-input').value) || 0;
+      const resultDiv = document.getElementById('calculator-result');
+      const contentDiv = document.getElementById('recommended-package');
+      
+      if (mac <= 0) return;
+
+      let pkg = '', price = '', note = '';
+      
+      if (mac <= 1000) {
+        pkg = '<span style="color: var(--primary)">M+ Core | نبضة</span>';
+        price = '498.2 ر.ع';
+        note = 'مناسبة جداً للبداية';
+      } else if (mac <= 2500) {
+        pkg = '<span style="color: var(--secondary)">M+ Boost | زخم</span>';
+        price = '1,000 ر.ع';
+        note = 'الأكثر طلباً للنمو السريع';
+      } else if (mac <= 5000) {
+        pkg = '<span style="color: #ec4899">M+ Pro | برق</span>';
+        price = '1,759.5 ر.ع';
+        note = 'للشركات الكبيرة والأتمتة';
+      } else {
+        pkg = 'M+ Enterprise';
+        price = 'عرض خاص';
+        note = 'تواصل معنا للحصول على عرض مخصص';
+      }
+      
+      contentDiv.innerHTML = `
+        <h2 style="margin: 1rem 0;">${pkg}</h2>
+        <div style="font-size: 2rem; font-weight: bold; margin-bottom: 0.5rem;">${price}</div>
+        <p style="color: var(--text-muted);">${note}</p>
+      `;
+      
+      resultDiv.style.display = 'block';
+      resultDiv.scrollIntoView({behavior: 'smooth'});
+    }
+
+    // Booking Modal
+    function showBookingForm() {
+      document.getElementById('bookingModal').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeBookingForm() {
+      document.getElementById('bookingModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+      // Reset
+      document.getElementById('meetingForm').style.display = 'block';
+      document.getElementById('successMessage').style.display = 'none';
+      document.getElementById('meetingForm').reset();
+    }
+
+    function submitBookingForm(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submitBtn');
+      btn.textContent = 'جاري الإرسال...';
+      btn.disabled = true;
+      
+      // Simulate submission
+      setTimeout(() => {
+        document.getElementById('meetingForm').style.display = 'none';
+        document.getElementById('successMessage').style.display = 'block';
+        btn.textContent = 'تأكيد الحجز';
+        btn.disabled = false;
+      }, 1500);
+    }
+
+    // Demo Chat Interaction
+    let msgCount = 0;
+    function sendDemoMessage() {
+      const input = document.getElementById('demo-message-input');
+      const text = input.value.trim();
+      if (!text) return;
+      
+      const area = document.getElementById('chat-messages');
+      
+      // User Msg
+      area.innerHTML += `<div class="msg msg-out animate-on-scroll" style="animation: fadeInUp 0.3s forwards">${text}</div>`;
+      input.value = '';
+      area.scrollTop = area.scrollHeight;
+      
+      msgCount++;
+      updateStats();
+
+      // Bot Reply
+      setTimeout(() => {
+        let reply = "شكراً لاهتمامك! سيقوم أحد مستشارينا بالتواصل معك قريباً.";
+        if (text.includes("سعر") || text.includes("باقة")) reply = "باقاتنا تبدأ من 498 ر.ع سنوياً. هل تود الاطلاع على التفاصيل؟";
+        if (text.includes("ميزات")) reply = "لدينا أتمتة، بث، وتقارير متقدمة.";
+        
+        area.innerHTML += `<div class="msg msg-in animate-on-scroll" style="animation: fadeInUp 0.3s forwards">${reply}</div>`;
+        area.scrollTop = area.scrollHeight;
+        msgCount++;
+        updateStats();
+      }, 1000);
+    }
+
+    function sendQuickReply(txt) {
+      document.getElementById('demo-message-input').value = txt;
+      sendDemoMessage();
+    }
+
+    function sendBroadcast() {
+      const res = document.getElementById('broadcast-result');
+      res.style.display = 'none';
+      setTimeout(() => {
+        res.style.display = 'block';
+        msgCount += 150;
+        updateStats();
+      }, 1000);
+    }
+
+    function updateStats() {
+      document.getElementById('demo-messages-count').innerText = msgCount;
+    }
+
+    function requestQuote(type) {
+      window.open(`https://wa.me/96898567383?text=مرحباً، أود الاستفسار عن باقة ${type}`, '_blank');
+    }
+  </script>
+ </body>
+</html>
